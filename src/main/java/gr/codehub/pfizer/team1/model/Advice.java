@@ -1,5 +1,6 @@
 package gr.codehub.pfizer.team1.model;
 
+import gr.codehub.pfizer.team1.enums.Medication;
 import lombok.Data;
 
 import javax.persistence.*;
