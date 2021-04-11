@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Data
 @Entity
-public class Advice {
+public class DoctorAdvice {
 
     @Id
     @Column(name = "id", nullable = false)
