@@ -27,6 +27,6 @@ public class MediDataRepo {
     @Column(name = "carbIntake", nullable = false)
     private float carbIntake;
 
-    @Column(name = "patientId", nullable = false)
-    private int patientId;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Patient patient;
 }

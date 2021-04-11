@@ -19,6 +19,7 @@ public class DoctorAdvice {
     @Column(name = "date", nullable = false)
     private Date date;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "medication", nullable = true)
     private Medication medication;
 
@@ -27,5 +28,11 @@ public class DoctorAdvice {
 
     @Column(name = "description", nullable = true)
     private String description;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Doctor doctor;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Patient patient;
 
 }
