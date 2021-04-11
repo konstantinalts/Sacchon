@@ -33,4 +33,13 @@ public class Patient {
     @Column(name = "email", nullable = false)
     private String email;
 
+    @Column(name = "username", nullable = false)
+    private String username;
+
+    @Column(name = "password", nullable = false)
+    private String password;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Doctor doctor;
+
 }
