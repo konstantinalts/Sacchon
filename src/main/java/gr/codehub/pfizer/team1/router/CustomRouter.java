@@ -2,6 +2,8 @@ package gr.codehub.pfizer.team1.router;
 
 
 
+import gr.codehub.pfizer.team1.resource.DoctorListResource;
+import gr.codehub.pfizer.team1.resource.DoctorResource;
 import org.restlet.Application;
 import org.restlet.routing.Router;
 
@@ -22,6 +24,7 @@ public class CustomRouter {
 
         router.attach("/doctor", DoctorListResource.class);
         router.attach("/doctor/{id}", DoctorResource.class);
+        router.attach("/doctor/delete/{id}", DoctorResource.class);
 
         router.attach("/medical_data", MedicalDataListResource.class);
         router.attach("/medical_data/{id}", MedicalDataResource.class);
