@@ -1,9 +1,9 @@
 package gr.codehub.pfizer.team1.router;
 
 
-//import gr.codehub.pfizer.hibernate.resource.*;
-//import org.restlet.Application;
-//import org.restlet.routing.Router;
+
+import org.restlet.Application;
+import org.restlet.routing.Router;
 
 public class CustomRouter {
 
