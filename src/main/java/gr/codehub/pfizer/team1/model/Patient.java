@@ -17,10 +17,10 @@ public class Patient {
     private int id;
 
     @Column(name = "fname", nullable = false)
-    private int fname;
+    private String fname;
 
     @Column(name = "lname", nullable = false)
-    private int lname;
+    private String lname;
 
     @Column(name = "birthdate", nullable = false)
     private Date birthdate;
