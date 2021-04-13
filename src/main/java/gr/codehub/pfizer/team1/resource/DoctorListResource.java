@@ -4,6 +4,7 @@ package gr.codehub.pfizer.team1.resource;
 import gr.codehub.pfizer.team1.jpautil.JpaUtil;
 import gr.codehub.pfizer.team1.model.Doctor;
 import gr.codehub.pfizer.team1.repository.DoctorRepository;
+import gr.codehub.pfizer.team1.repository.Repository;
 import gr.codehub.pfizer.team1.representation.DoctorRepresentation;
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
