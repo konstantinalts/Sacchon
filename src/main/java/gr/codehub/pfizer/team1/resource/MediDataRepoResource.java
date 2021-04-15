@@ -5,10 +5,7 @@ import gr.codehub.pfizer.team1.jpautil.JpaUtil;
 import gr.codehub.pfizer.team1.model.MediDataRepo;
 import gr.codehub.pfizer.team1.repository.DataRepository;
 import gr.codehub.pfizer.team1.representation.DataRepresentation;
-import org.restlet.resource.Delete;
-import org.restlet.resource.Get;
-import org.restlet.resource.Put;
-import org.restlet.resource.ServerResource;
+import org.restlet.resource.*;
 
 import javax.persistence.EntityManager;
 
@@ -30,7 +27,7 @@ public class MediDataRepoResource extends ServerResource {
         return dataRepresentation;
     }
 
-    @Put("json")
+    @Post("json")
     public DataRepresentation addMediDataRepo(DataRepresentation dataRepresentation){
         EntityManager em = JpaUtil.getEntityManager();
         DataRepository dataRepository = new DataRepository(em);

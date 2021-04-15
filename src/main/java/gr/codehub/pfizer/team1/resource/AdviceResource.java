@@ -4,10 +4,7 @@ import gr.codehub.pfizer.team1.jpautil.JpaUtil;
 import gr.codehub.pfizer.team1.model.DoctorAdvice;
 import gr.codehub.pfizer.team1.repository.AdviceRepository;
 import gr.codehub.pfizer.team1.representation.AdviceRepresentation;
-import org.restlet.resource.Delete;
-import org.restlet.resource.Get;
-import org.restlet.resource.Put;
-import org.restlet.resource.ServerResource;
+import org.restlet.resource.*;
 
 import javax.persistence.EntityManager;
 
@@ -30,7 +27,7 @@ public class AdviceResource extends ServerResource {
         return adviceRepresentation;
     }
 
-    @Put("json")
+    @Post("json")
     public AdviceRepresentation addDoctorAdvice(AdviceRepresentation adviceRepresentation){
         EntityManager em = JpaUtil.getEntityManager();
         AdviceRepository adviceRepository = new AdviceRepository(em);
@@ -38,7 +35,7 @@ public class AdviceResource extends ServerResource {
 
 
         doctorAdvice.setDate(adviceRepresentation.getDate());
-//        doctorAdvice.setMedication(adviceRepresentation.getMedication());
+        doctorAdvice.setMedication(adviceRepresentation.getMedication());
         doctorAdvice.setDosage(adviceRepresentation.getDosage());
         doctorAdvice.setDescription(adviceRepresentation.getDescription());
 
