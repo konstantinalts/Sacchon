@@ -6,7 +6,11 @@ import javax.persistence.EntityManager;
 
 public class DataRepository extends Repository<MediDataRepo, Integer>{
 
-    public DataRepository(EntityManager entityManager) { super(entityManager); }
+    private EntityManager entityManager;
+    public DataRepository(EntityManager entityManager) {
+        super(entityManager);
+        this.entityManager = entityManager;
+    }
 
     @Override
     public Class<MediDataRepo> getEntityClass() { return MediDataRepo.class; }
