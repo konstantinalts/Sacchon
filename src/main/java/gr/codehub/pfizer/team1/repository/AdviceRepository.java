@@ -20,6 +20,6 @@ public class AdviceRepository extends Repository<DoctorAdvice, Integer>{
     public String getClassName() { return DoctorAdvice.class.getName(); }
 
 
-    public
+
 
 }

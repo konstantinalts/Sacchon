@@ -1,5 +1,6 @@
 package gr.codehub.pfizer.team1.repository;
 
+import gr.codehub.pfizer.team1.model.Doctor;
 import gr.codehub.pfizer.team1.model.MediDataRepo;
 import gr.codehub.pfizer.team1.model.Patient;
 
@@ -28,7 +29,17 @@ public class PatientRepository extends Repository<Patient, Integer>{
                 .getSingleResult();
     }
 
+    public Patient getByEmail(String email){
+        return entityManager.createQuery("SELECT p FROM Patient p WHERE p.email = :email", Patient.class)
+                .setParameter("email",email)
+                .getSingleResult();
+    }
 
+    public List<Doctor> getPatients(int doctorId){
+        return entityManager.createQuery("SELECT p FROM Doctor pm inner join pm.patients p WHERE pm.id = : doctorId", Doctor.class)
+                .setParameter("doctorId", doctorId)
+                .getResultList();
+    }
 
 
 }
