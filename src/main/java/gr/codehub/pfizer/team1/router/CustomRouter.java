@@ -15,9 +15,9 @@ public class CustomRouter {
         this.application = application;
     }
 
-    public Router publicResources() {
-        Router router = new Router();
-//        router.attach("/home", HomeServerResource.class);
+    public Router createApiRouter() {
+
+        Router router = new Router(application.getContext());
 
         router.attach("/patient", PatientListResource.class);
         router.attach("/patient{id}", PatientResource.class);
@@ -35,5 +35,11 @@ public class CustomRouter {
         return router;
     }
 
+    public Router publicResources() {
+        Router router = new Router();
+        //       router.attach("/home", HomeServerResource.class);
+        return router;
 
+
+    }
 }
