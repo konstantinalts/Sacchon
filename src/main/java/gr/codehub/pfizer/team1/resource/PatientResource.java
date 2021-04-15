@@ -4,10 +4,7 @@ import gr.codehub.pfizer.team1.jpautil.JpaUtil;
 import gr.codehub.pfizer.team1.model.Patient;
 import gr.codehub.pfizer.team1.repository.PatientRepository;
 import gr.codehub.pfizer.team1.representation.PatientRepresentation;
-import org.restlet.resource.Delete;
-import org.restlet.resource.Get;
-import org.restlet.resource.Put;
-import org.restlet.resource.ServerResource;
+import org.restlet.resource.*;
 
 import javax.persistence.EntityManager;
 
@@ -29,7 +26,7 @@ public class PatientResource extends ServerResource {
         return patientRepresentation;
     }
 
-    @Put("json")
+    @Post("json")
     public PatientRepresentation addPatient(PatientRepresentation patientRepresentation){
         EntityManager em = JpaUtil.getEntityManager();
         PatientRepository patientRepository = new PatientRepository(em);

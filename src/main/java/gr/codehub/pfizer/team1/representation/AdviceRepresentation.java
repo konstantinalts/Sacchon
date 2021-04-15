@@ -27,11 +27,11 @@ public class AdviceRepresentation {
     public AdviceRepresentation(DoctorAdvice doctorAdvice) {
         if (doctorAdvice != null) {
             date = doctorAdvice.getDate();
-//            medication = doctorAdvice.getMedication();
+            medication = doctorAdvice.getMedication();
             dosage = doctorAdvice.getDosage();
             description = doctorAdvice.getDescription();
-//            doctor = doctorAdvice.getDoctor();
-//            patient = doctorAdvice.getPatient();
+            doctor = doctorAdvice.getDoctor();
+            patient = doctorAdvice.getPatient();
 
             uri =  "http://localhost:9000/v1/doctorAdvice/" + doctorAdvice.getId();
         }

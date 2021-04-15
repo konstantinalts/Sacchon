@@ -34,9 +34,6 @@ public class MediDataRepoListResource extends ServerResource {
         if (dataRepresentation == null) return null;
         if (dataRepresentation.getDate() == null) return null;
         if (dataRepresentation.getTime() == null) return null;
-        // Ta int, float den mporoun na dilwthoun me ==
-        if (dataRepresentation.getGlucoseLevel() == Integer.parseInt(null)) return null;
-        if (dataRepresentation.getCarbIntake() == Float.parseFloat(null)) return null;
 
 
         MediDataRepo mediDataRepo = dataRepresentation.createData();

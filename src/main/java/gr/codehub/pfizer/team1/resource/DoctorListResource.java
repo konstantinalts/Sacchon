@@ -40,10 +40,10 @@ public class DoctorListResource extends ServerResource {
         if (doctorRepresentation.getLname() == null) return null;
         if (doctorRepresentation.getBirthdate() == null) return null;
         if (doctorRepresentation.getAddress() == null) return null;
-//        if (doctorRepresentation.getTelephone() == null) return null;
         if (doctorRepresentation.getEmail() == null) return null;
         if (doctorRepresentation.getUsername() == null) return null;
         if (doctorRepresentation.getPassword() == null) return null;
+        if (doctorRepresentation.getChiefDoctor() == null) return null;
 
         Doctor doctor = doctorRepresentation.createDoctor();
         EntityManager em = JpaUtil.getEntityManager();

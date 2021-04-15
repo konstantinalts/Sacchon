@@ -38,9 +38,6 @@ public class AdviceListResource extends ServerResource {
         if (adviceRepresentation == null) return null;
         if (adviceRepresentation.getDate() == null) return null;
         if (adviceRepresentation.getMedication() == null) return null;
-        // Ta int, float den mporoun na dilwthoun me ==
-        if (adviceRepresentation.getDosage() == Integer.parseInt(null)) return null;
-        if (adviceRepresentation.getDescription() == null) return null;
 
 
         DoctorAdvice doctorAdvice = adviceRepresentation.createDoctorAdvice();
