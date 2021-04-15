@@ -27,8 +27,8 @@ public class Shield {
 
         // - Verifier : checks authentication
         // - Enroler : to check authorization (roles)
-        Verifier verifier = new CustomVerifier();
-        apiGuard.setVerifier(verifier);
+//        Verifier verifier = new CustomVerifier();
+//        apiGuard.setVerifier(verifier);
 
         return apiGuard;
     }
