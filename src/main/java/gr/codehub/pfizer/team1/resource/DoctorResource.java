@@ -44,7 +44,7 @@ public class DoctorResource extends ServerResource {
         doctor.setEmail(doctorRepresentation.getEmail());
         doctor.setUsername(doctorRepresentation.getUsername());
         doctor.setPassword(doctorRepresentation.getPassword());
-        doctor.setChiefDoctor(doctorRepresentation.getChiefDoctor());
+//        doctor.setChiefDoctor(doctorRepresentation.getChiefDoctor());
 
         DoctorRepresentation doctorRepresentation1 = new DoctorRepresentation(doctor);
         em.close();

@@ -1,9 +1,9 @@
 package gr.codehub.pfizer.team1.model;
 
+import gr.codehub.pfizer.team1.enums.ChiefDoctor;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 
@@ -45,12 +45,12 @@ public class Doctor {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "chiefDoctor", nullable = true)
-    private String chiefDoctor;
+    private ChiefDoctor chiefDoctor;
 
-    @OneToMany(mappedBy = "patient", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "doctor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Patient> patients;
 
-    @OneToMany(mappedBy = "doctorAdvice", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "doctor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<DoctorAdvice> doctorAdvices;
 
 }

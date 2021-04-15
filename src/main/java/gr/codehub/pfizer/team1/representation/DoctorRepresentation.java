@@ -1,5 +1,6 @@
 package gr.codehub.pfizer.team1.representation;
 
+import gr.codehub.pfizer.team1.enums.ChiefDoctor;
 import gr.codehub.pfizer.team1.model.Doctor;
 import gr.codehub.pfizer.team1.model.DoctorAdvice;
 import gr.codehub.pfizer.team1.model.Patient;
@@ -41,7 +42,7 @@ public class DoctorRepresentation {
             email = doctor.getEmail();
             username = doctor.getUsername();
             password = doctor.getPassword();
-            chiefDoctor = doctor.getChiefDoctor();
+            chiefDoctor = String.valueOf(doctor.getChiefDoctor());
             patients = doctor.getPatients();
             doctorAdvices = doctor.getDoctorAdvices();
 
@@ -60,7 +61,7 @@ public class DoctorRepresentation {
         doctor.setEmail(email);
         doctor.setUsername(username);
         doctor.setPassword(password);
-        doctor.setChiefDoctor(chiefDoctor);
+        doctor.setChiefDoctor(ChiefDoctor.valueOf(chiefDoctor));
         doctor.setPatients(patients);
         doctor.setDoctorAdvices(doctorAdvices);
 

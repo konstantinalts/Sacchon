@@ -17,7 +17,7 @@ public class CustomRouter {
 
     public Router publicResources() {
         Router router = new Router();
-        router.attach("/home", HomeServerResource.class);
+//        router.attach("/home", HomeServerResource.class);
 
         router.attach("/patient", PatientListResource.class);
         router.attach("/patient{id}", PatientResource.class);

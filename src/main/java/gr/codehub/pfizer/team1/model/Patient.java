@@ -43,10 +43,10 @@ public class Patient {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Doctor doctor;
 
-    @OneToMany(mappedBy = "mediDataRepo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "patient", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<MediDataRepo> mediDataRepos;
 
-    @OneToMany(mappedBy = "doctorAdvice", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "patient", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<DoctorAdvice> doctorAdvices;
 
 }

@@ -38,7 +38,7 @@ public class AdviceResource extends ServerResource {
 
 
         doctorAdvice.setDate(adviceRepresentation.getDate());
-        doctorAdvice.setMedication(adviceRepresentation.getMedication());
+//        doctorAdvice.setMedication(adviceRepresentation.getMedication());
         doctorAdvice.setDosage(adviceRepresentation.getDosage());
         doctorAdvice.setDescription(adviceRepresentation.getDescription());
 
