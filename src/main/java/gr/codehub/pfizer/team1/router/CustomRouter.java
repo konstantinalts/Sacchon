@@ -39,7 +39,7 @@ public class CustomRouter {
         Router router = new Router();
 
         router.attach("/patient", PatientListResource.class);
-        router.attach("/patient{id}", PatientResource.class);
+        router.attach("/patient/{id}", PatientResource.class);
 
         router.attach("/doctor", DoctorListResource.class);
         router.attach("/doctor/{id}", DoctorResource.class);

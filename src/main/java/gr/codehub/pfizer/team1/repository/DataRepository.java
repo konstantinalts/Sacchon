@@ -14,4 +14,6 @@ public class DataRepository extends Repository<MediDataRepo, Integer>{
     @Override
     public String getClassName() { return MediDataRepo.class.getName(); }
 
+
+
 }
