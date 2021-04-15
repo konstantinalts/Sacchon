@@ -29,6 +29,12 @@ public class PatientRepository extends Repository<Patient, Integer>{
                 .getSingleResult();
     }
 
+    public Patient getByUsername(String username){
+        return entityManager.createQuery("SELECT p FROM Patient p WHERE p.username = :username", Patient.class)
+                .setParameter("username",username)
+                .getSingleResult();
+    }
+
     public Patient getByEmail(String email){
         return entityManager.createQuery("SELECT p FROM Patient p WHERE p.email = :email", Patient.class)
                 .setParameter("email",email)
@@ -39,6 +45,12 @@ public class PatientRepository extends Repository<Patient, Integer>{
         return entityManager.createQuery("SELECT p FROM Doctor pm inner join pm.patients p WHERE pm.id = : doctorId", Doctor.class)
                 .setParameter("doctorId", doctorId)
                 .getResultList();
+    }
+
+    public List<Patient> getPatientsWithoutDoc(){
+        return entityManager.createQuery("SELECT p FROM Patient p WHERE p.doctorId = : NULL", Patient.class)
+                .getResultList();
+
     }
 
 
