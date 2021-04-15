@@ -43,6 +43,8 @@ public class Doctor {
     @Column(name = "removedAt", nullable = true)
     private Date removedAt;
 
+    private String role;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "chiefDoctor", nullable = true)
     private ChiefDoctor chiefDoctor;

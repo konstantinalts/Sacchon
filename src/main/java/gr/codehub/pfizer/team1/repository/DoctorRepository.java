@@ -33,6 +33,12 @@ public class DoctorRepository extends Repository<Doctor, Integer>{
                 .getSingleResult();
     }
 
+    public Doctor getByUsername(String username){
+        return entityManager.createQuery("SELECT p FROM Patient p WHERE p.username = :username", Doctor.class)
+                .setParameter("username",username)
+                .getSingleResult();
+    }
+
 
 
 }
