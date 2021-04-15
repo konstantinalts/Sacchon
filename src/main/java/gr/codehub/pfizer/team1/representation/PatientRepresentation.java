@@ -42,9 +42,9 @@ public class PatientRepresentation {
             email = patient.getEmail();
             username = patient.getUsername();
             password = patient.getPassword();
-//            doctor = patient.getDoctor();
-//            mediDataRepos = patient.getMediDataRepos();
-//            doctorAdvices = patient.getDoctorAdvices();
+            doctor = patient.getDoctor();
+            mediDataRepos = patient.getMediDataRepos();
+            doctorAdvices = patient.getDoctorAdvices();
 
             uri =  "http://localhost:9000/v1/patient/" + patient.getId();
         }

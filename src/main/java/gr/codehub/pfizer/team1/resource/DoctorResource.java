@@ -1,13 +1,11 @@
 package gr.codehub.pfizer.team1.resource;
 
+import gr.codehub.pfizer.team1.enums.ChiefDoctor;
 import gr.codehub.pfizer.team1.jpautil.JpaUtil;
 import gr.codehub.pfizer.team1.model.Doctor;
 import gr.codehub.pfizer.team1.repository.DoctorRepository;
 import gr.codehub.pfizer.team1.representation.DoctorRepresentation;
-import org.restlet.resource.Delete;
-import org.restlet.resource.Get;
-import org.restlet.resource.Put;
-import org.restlet.resource.ServerResource;
+import org.restlet.resource.*;
 
 import javax.persistence.EntityManager;
 
@@ -29,7 +27,7 @@ public class DoctorResource extends ServerResource {
         return doctorRepresentation;
     }
 
-    @Put("json")
+    @Post("json")
     public DoctorRepresentation addDoctor(DoctorRepresentation doctorRepresentation){
         EntityManager em = JpaUtil.getEntityManager();
         DoctorRepository doctorRepository = new DoctorRepository(em);
@@ -44,7 +42,7 @@ public class DoctorResource extends ServerResource {
         doctor.setEmail(doctorRepresentation.getEmail());
         doctor.setUsername(doctorRepresentation.getUsername());
         doctor.setPassword(doctorRepresentation.getPassword());
-//        doctor.setChiefDoctor(doctorRepresentation.getChiefDoctor());
+        doctor.setChiefDoctor(ChiefDoctor.valueOf(doctorRepresentation.getChiefDoctor()));
 
         DoctorRepresentation doctorRepresentation1 = new DoctorRepresentation(doctor);
         em.close();
