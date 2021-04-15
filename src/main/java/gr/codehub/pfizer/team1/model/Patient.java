@@ -40,6 +40,8 @@ public class Patient {
     @Column(name = "password", nullable = false)
     private String password;
 
+    private String role;
+
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Doctor doctor;
 
