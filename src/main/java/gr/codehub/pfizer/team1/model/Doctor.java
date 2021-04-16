@@ -29,7 +29,7 @@ public class Doctor {
     private String address;
 
     @Column(name = "telephone", nullable = false)
-    private long telephone;
+    private String telephone;
 
     @Column(name = "email", nullable = false)
     private String email;
@@ -42,6 +42,8 @@ public class Doctor {
 
     @Column(name = "removedAt", nullable = true)
     private Date removedAt;
+
+    private String role;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "chiefDoctor", nullable = true)

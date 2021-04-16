@@ -21,7 +21,7 @@ public class PatientRepresentation {
     private String lname;
     private Date birthdate;
     private String address;
-    private long telephone;
+    private String telephone;
     private String email;
     private String username;
     private String password;
