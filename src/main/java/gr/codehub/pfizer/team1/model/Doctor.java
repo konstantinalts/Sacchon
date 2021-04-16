@@ -29,7 +29,7 @@ public class Doctor {
     private String address;
 
     @Column(name = "telephone", nullable = false)
-    private long telephone;
+    private String telephone;
 
     @Column(name = "email", nullable = false)
     private String email;
