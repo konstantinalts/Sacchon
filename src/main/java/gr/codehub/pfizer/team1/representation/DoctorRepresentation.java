@@ -19,7 +19,7 @@ public class DoctorRepresentation {
 
     private String fname;
     private String lname;
-    private String birthdate;
+    private Date birthdate;
     private String address;
     private String telephone;
     private String email;

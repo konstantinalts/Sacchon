@@ -4,46 +4,12 @@ import gr.codehub.pfizer.team1.enums.ChiefDoctor;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 @Data
 @Entity
-public class Doctor {
+public class Doctor extends User{
 
-    @Id
-    @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-    @Column(name = "fname", nullable = false)
-    private String fname;
-
-    @Column(name = "lname", nullable = false)
-    private String lname;
-
-    @Column(name = "birthdate", nullable = false)
-    private String birthdate;
-
-    @Column(name = "address", nullable = false)
-    private String address;
-
-    @Column(name = "telephone", nullable = false)
-    private String telephone;
-
-    @Column(name = "email", nullable = false)
-    private String email;
-
-    @Column(name = "username", nullable = false)
-    private String username;
-
-    @Column(name = "password", nullable = false)
-    private String password;
-
-    @Column(name = "removedAt", nullable = true)
-    private Date removedAt;
-
-    private String role;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "chiefDoctor", nullable = true)

@@ -34,8 +34,4 @@ public class AdviceRepository extends Repository<DoctorAdvice, Integer>{
                 .getResultList();
     }
 
-
-
-
-
 }

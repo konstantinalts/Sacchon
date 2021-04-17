@@ -27,8 +27,8 @@ public class MainApp extends Application {
         em.close();
 
         Component c = new Component();
-        c.getServers().add(Protocol.HTTP, 9000);
-        c.getDefaultHost().attach("/v1", new MainApp());
+        c.getServers().add(Protocol.HTTP, 4200);
+        c.getDefaultHost().attach("sacchon", new MainApp());
         c.start();
 
         LOGGER.info("Sample Web API started");
@@ -41,7 +41,7 @@ public class MainApp extends Application {
         Router publicRouter = customRouter.publicResources();
 
 
-        CorsFilter corsFilter = new CorsFilter(getContext(),publicRouter);
+        CorsFilter corsFilter = new CorsFilter(getContext(), publicRouter);
         corsFilter.setAllowedCredentials(true);
         corsFilter.setAllowedOrigins(new HashSet<>(Arrays.asList("*")));
         HashSet<Method> methodHashSet = new HashSet<>();
@@ -54,4 +54,4 @@ public class MainApp extends Application {
         return publicRouter;
     }
 
-    }
+}
