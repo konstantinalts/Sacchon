@@ -23,7 +23,7 @@ public class Patient {
     private String lname;
 
     @Column(name = "birthdate", nullable = false)
-    private Date birthdate;
+    private String birthdate;
 
     @Column(name = "address", nullable = false)
     private String address;
