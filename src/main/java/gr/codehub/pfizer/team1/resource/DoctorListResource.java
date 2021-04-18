@@ -19,7 +19,7 @@ public class DoctorListResource extends ServerResource {
 
 
     @Get("json")
-    public List<DoctorRepresentation> getDoctor(){
+    public List<DoctorRepresentation> getDoctors(){
         EntityManager em = JpaUtil.getEntityManager();
         DoctorRepository doctorRepository = new DoctorRepository(em);
         List<Doctor> doctors = doctorRepository.findAll();

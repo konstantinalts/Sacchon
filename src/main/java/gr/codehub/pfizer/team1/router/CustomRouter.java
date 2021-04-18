@@ -38,11 +38,24 @@ public class CustomRouter {
     public Router publicResources() {
         Router router = new Router();
 
-        router.attach("/doctor/register", RegisterPatientResource.class);
-        router.attach("/user/register", RegisterPatientResource.class);
+        router.attach("/register/doctor", RegisterDoctorResource.class);
+        router.attach("/register/user", RegisterPatientResource.class);
+
+        router.attach("/patient", PatientListResource.class);
+        router.attach("/patient{id}", PatientResource.class);
+
+        router.attach("/doctor", DoctorListResource.class);
+        router.attach("/doctor/{id}", DoctorResource.class);
+        router.attach("/doctor/delete/{id}", DoctorResource.class);
+
+        router.attach("/medical_data", MediDataRepoListResource.class);
+        router.attach("/medical_data/{id}", MediDataRepoResource.class);
+
+        router.attach("/medical_report", AdviceListResource.class);
+        router.attach("/medical_report/{id}", AdviceResource.class);
 
 
-        //       router.attach("/home", HomeServerResource.class);
+//               router.attach("/home", HomeServerResource.class);
         return router;
 
 

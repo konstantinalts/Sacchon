@@ -74,15 +74,15 @@ public class RegisterDoctorResource extends ServerResource {
 
     @Get
     public boolean usernameOrEmailExists() {
-        String candidateUsername = "";
-        String candidateEmail = "";
+        String usernameExists = "";
+        String emailExists = "";
         try {
-            candidateUsername = getQueryValue("username");
-            candidateEmail = getQueryValue("email");
+            usernameExists = getQueryValue("username");
+            emailExists = getQueryValue("email");
         } catch (Exception e) {
             return false;
         }
-        return usernameExists(candidateUsername) && emailExists(candidateEmail);
+        return usernameExists(usernameExists) && emailExists(emailExists);
     }
 }
 

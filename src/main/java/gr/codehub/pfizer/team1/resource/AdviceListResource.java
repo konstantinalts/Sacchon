@@ -27,11 +27,11 @@ public class AdviceListResource extends ServerResource {
     @Get("json")
     public ApiResult<List<AdviceRepresentation>> getDoctorAdvice(){
 
-        try {
-            ResourceUtils.checkRole(this, Shield.ROLE_USER);
-        } catch (AuthorizationException e) {
-            return new ApiResult<>(null, 500, e.getMessage());
-        }
+//        try {
+//            ResourceUtils.checkRole(this, Shield.ROLE_USER);
+//        } catch (AuthorizationException e) {
+//            return new ApiResult<>(null, 500, e.getMessage());
+//        }
 
 
 

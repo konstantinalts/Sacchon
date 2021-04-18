@@ -27,8 +27,8 @@ public class MainApp extends Application {
         em.close();
 
         Component c = new Component();
-        c.getServers().add(Protocol.HTTP, 4200);
-        c.getDefaultHost().attach("sacchon", new MainApp());
+        c.getServers().add(Protocol.HTTP, 9000);
+        c.getDefaultHost().attach("/sacchon", new MainApp());
         c.start();
 
         LOGGER.info("Sample Web API started");
