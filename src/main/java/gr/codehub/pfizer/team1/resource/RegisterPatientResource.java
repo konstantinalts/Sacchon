@@ -16,21 +16,21 @@ public class RegisterPatientResource extends ServerResource {
     public ApiResult<PatientRepresentation> registerPatient(PatientRepresentation patientRepresentation) {
 
         if (patientRepresentation == null)
-            return new ApiResult<>(null, 400, "No input data to create the customer");
+            return new ApiResult<>(null, 400, "No input data to create the user");
         if (patientRepresentation.getFname() == null)
-            return new ApiResult<>(null, 400, "No first name added to create the costumer");
+            return new ApiResult<>(null, 400, "No first name added to create the user");
         if (patientRepresentation.getLname() == null)
-            return new ApiResult<>(null, 400, "No last name added to create the costumer");
+            return new ApiResult<>(null, 400, "No last name added to create the user");
         if (patientRepresentation.getBirthdate() == null)
-            return new ApiResult<>(null, 400, "No birthdate added to create the costumer");
+            return new ApiResult<>(null, 400, "No birthdate added to create the user");
         if (patientRepresentation.getTelephone() == null)
-            return new ApiResult<>(null, 400, "No telephone added to create the costumer");
+            return new ApiResult<>(null, 400, "No telephone added to create the user");
         if (patientRepresentation.getEmail() == null)
-            return new ApiResult<>(null, 400, "No email added to create the costumer");
+            return new ApiResult<>(null, 400, "No email added to create the user");
         if (patientRepresentation.getUsername() == null)
-            return new ApiResult<>(null, 400, "No username added to create the costumer");
+            return new ApiResult<>(null, 400, "No username added to create the user");
         if (patientRepresentation.getPassword() == null)
-            return new ApiResult<>(null, 400, "No password added to create the costumer");
+            return new ApiResult<>(null, 400, "No password added to create the user");
         if (usernameExists(patientRepresentation.getUsername()))
             return new ApiResult<>(null, 400, "Duplicate username");
         if (emailExists(patientRepresentation.getUsername()))
@@ -41,7 +41,7 @@ public class RegisterPatientResource extends ServerResource {
         PatientRepository patientRepository = new PatientRepository(em);
         patientRepository.save(patient);
         return new ApiResult<>(new PatientRepresentation(patient), 200,
-                "The customer was succesfully created");
+                "The user was succesfully created");
     }
 
     public boolean usernameExists(String candidateUsername) {

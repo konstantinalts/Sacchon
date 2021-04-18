@@ -21,7 +21,7 @@ public class RegisterUserResource extends ServerResource {
     public ApiResult<List<UserRepresantation>> getUsers(){
 
         try{
-            ResourceUtils.checkRole(this, Shield.ROLE_OWNER);
+            ResourceUtils.checkRole(this, Shield.ROLE_USER);
         } catch (AuthorizationException e){
             return new ApiResult<>(null,500,e.getMessage());
         }
