@@ -1,12 +1,16 @@
 package gr.codehub.pfizer.team1.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Time;
 import java.util.Date;
 
-@Data
+@Setter
+@Getter
 @Entity
 public class MediDataRepo {
 
@@ -27,6 +31,7 @@ public class MediDataRepo {
     @Column(name = "carbIntake", nullable = false)
     private float carbIntake;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Patient patient;
+    private Patient patientId;
 }

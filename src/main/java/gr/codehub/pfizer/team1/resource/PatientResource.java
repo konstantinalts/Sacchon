@@ -1,9 +1,11 @@
 package gr.codehub.pfizer.team1.resource;
 
+import gr.codehub.pfizer.team1.exception.AuthorizationException;
 import gr.codehub.pfizer.team1.jpautil.JpaUtil;
 import gr.codehub.pfizer.team1.model.Patient;
 import gr.codehub.pfizer.team1.repository.PatientRepository;
 import gr.codehub.pfizer.team1.representation.PatientRepresentation;
+import gr.codehub.pfizer.team1.security.Shield;
 import org.restlet.resource.*;
 
 import javax.persistence.EntityManager;
@@ -16,14 +18,22 @@ public class PatientResource extends ServerResource {
     protected void doInit() {id = Integer.parseInt(getAttribute("id")); }
 
     @Get("json")
-    public PatientRepresentation getPatient(){
+    public ApiResult<PatientRepresentation> getPatient(){
+
+        try {
+            ResourceUtils.checkRole(this, Shield.ROLE_USER);
+            ResourceUtils.checkRole(this, Shield.ROLE_ADMIN);
+        } catch (AuthorizationException e) {
+            return new ApiResult<>(null, 500, e.getMessage());
+        }
+
         EntityManager em = JpaUtil.getEntityManager();
         PatientRepository patientRepository = new PatientRepository(em);
         Patient patient = patientRepository.read(id);
 
         PatientRepresentation patientRepresentation = new PatientRepresentation(patient);
         em.close();
-        return patientRepresentation;
+        return new ApiResult<>(patientRepresentation,200,"ok");
     }
 
     @Post("json")

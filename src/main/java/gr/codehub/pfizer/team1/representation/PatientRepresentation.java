@@ -5,13 +5,16 @@ import gr.codehub.pfizer.team1.model.DoctorAdvice;
 import gr.codehub.pfizer.team1.model.MediDataRepo;
 import gr.codehub.pfizer.team1.model.Patient;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Date;
 import java.util.List;
 
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class PatientRepresentation {
 
@@ -25,9 +28,8 @@ public class PatientRepresentation {
     private String email;
     private String username;
     private String password;
-    private Doctor doctor;
-    private List<MediDataRepo> mediDataRepos;
-    private List<DoctorAdvice> doctorAdvices;
+    private String role;
+
 
 
     private String uri;
@@ -42,9 +44,8 @@ public class PatientRepresentation {
             email = patient.getEmail();
             username = patient.getUsername();
             password = patient.getPassword();
-            doctor = patient.getDoctor();
-            mediDataRepos = patient.getMediDataRepos();
-            doctorAdvices = patient.getDoctorAdvices();
+            role = patient.getRole();
+
 
             uri =  "http://localhost:9000/v1/patient/" + patient.getId();
         }
@@ -61,9 +62,8 @@ public class PatientRepresentation {
         patient.setEmail(email);
         patient.setUsername(username);
         patient.setPassword(password);
-        patient.setDoctor(doctor);
-        patient.setMediDataRepos(mediDataRepos);
-        patient.setDoctorAdvices(doctorAdvices);
+        patient.setRole(role);
+
 
         return patient;
     }

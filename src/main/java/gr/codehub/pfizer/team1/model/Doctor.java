@@ -1,14 +1,17 @@
 package gr.codehub.pfizer.team1.model;
 
-import gr.codehub.pfizer.team1.enums.ChiefDoctor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity
-public class Doctor{
+public class Doctor {
 
     @Id
     @Column(name = "id", nullable = false)
@@ -41,14 +44,15 @@ public class Doctor{
 
     private String role;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "chiefDoctor", nullable = true)
-    private ChiefDoctor chiefDoctor;
+    private String chiefDoctor;
 
-    @OneToMany(mappedBy = "doctor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "doctorId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Patient> patients;
 
-    @OneToMany(mappedBy = "doctor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "doctorId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<DoctorAdvice> doctorAdvices;
 
 }

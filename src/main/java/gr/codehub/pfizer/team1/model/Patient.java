@@ -1,13 +1,17 @@
 package gr.codehub.pfizer.team1.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity
 public class Patient{
 
@@ -42,13 +46,16 @@ public class Patient{
 
     private String role;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Doctor doctor;
+    private Doctor doctorId;
 
-    @OneToMany(mappedBy = "patient", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "patientId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<MediDataRepo> mediDataRepos;
 
-    @OneToMany(mappedBy = "patient", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "patientId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<DoctorAdvice> doctorAdvices;
 
 }

@@ -2,23 +2,32 @@ package gr.codehub.pfizer.team1;
 
 import gr.codehub.pfizer.team1.jpautil.JpaUtil;
 import gr.codehub.pfizer.team1.router.CustomRouter;
+import gr.codehub.pfizer.team1.security.CorsFilter;
+import gr.codehub.pfizer.team1.security.Shield;
 import org.restlet.Application;
 import org.restlet.Component;
 import org.restlet.Restlet;
-import org.restlet.data.Method;
 import org.restlet.data.Protocol;
 import org.restlet.engine.Engine;
-import org.restlet.engine.application.CorsFilter;
 import org.restlet.routing.Router;
+import org.restlet.security.ChallengeAuthenticator;
+import org.restlet.security.Role;
 
 import javax.persistence.EntityManager;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.logging.Logger;
 
 public class MainApp extends Application {
 
     public static final Logger LOGGER = Engine.getLogger(MainApp.class);
+
+    public MainApp(){
+        setName("WebAPI");
+        setDescription("Full Web API");
+
+        getRoles().add(new Role(this, Shield.ROLE_ADMIN));
+        getRoles().add(new Role(this, Shield.ROLE_OWNER));
+        getRoles().add(new Role(this, Shield.ROLE_USER ));
+    }
 
     public static void main(String[] args) throws Exception {
 
@@ -32,26 +41,25 @@ public class MainApp extends Application {
         c.start();
 
         LOGGER.info("Sample Web API started");
-        LOGGER.info("URL: http://localhost:9000/v1/product");
+        LOGGER.info("URL: http://localhost:9000/sacchon/medical_report");
     }
 
     @Override
     public Restlet createInboundRoot() {
         CustomRouter customRouter = new CustomRouter(this);
-        Router publicRouter = customRouter.publicResources();
+        Shield shield = new Shield(this);
+        ChallengeAuthenticator apiGuard = shield.createApiGuard();
 
 
-        CorsFilter corsFilter = new CorsFilter(getContext(), publicRouter);
-        corsFilter.setAllowedCredentials(true);
-        corsFilter.setAllowedOrigins(new HashSet<>(Arrays.asList("*")));
-        HashSet<Method> methodHashSet = new HashSet<>();
-        methodHashSet.add(Method.GET);
-        methodHashSet.add(Method.POST);
-        methodHashSet.add(Method.PUT);
-        methodHashSet.add(Method.DELETE);
-        corsFilter.setDefaultAllowedMethods(methodHashSet);
+        Router publicResources = customRouter.publicResources();
+        Router protectedResources = customRouter.protectedResources();
 
-        return publicRouter;
+        publicResources.attachDefault(apiGuard);
+        apiGuard.setNext(protectedResources);
+
+
+        CorsFilter corsFilter = new CorsFilter(this);
+        return corsFilter.createCorsFilter(publicResources);
     }
 
 }

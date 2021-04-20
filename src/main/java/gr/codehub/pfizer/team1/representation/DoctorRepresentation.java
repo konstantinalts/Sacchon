@@ -1,17 +1,18 @@
 package gr.codehub.pfizer.team1.representation;
 
-import gr.codehub.pfizer.team1.enums.ChiefDoctor;
 import gr.codehub.pfizer.team1.model.Doctor;
 import gr.codehub.pfizer.team1.model.DoctorAdvice;
 import gr.codehub.pfizer.team1.model.Patient;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.Date;
 import java.util.List;
 
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class DoctorRepresentation {
 
@@ -25,9 +26,8 @@ public class DoctorRepresentation {
     private String email;
     private String username;
     private String password;
+    private String role;
     private String chiefDoctor;
-    private List<Patient> patients;
-    private List<DoctorAdvice> doctorAdvices;
 
 
     private String uri;
@@ -42,9 +42,8 @@ public class DoctorRepresentation {
             email = doctor.getEmail();
             username = doctor.getUsername();
             password = doctor.getPassword();
+            role = doctor.getRole();
             chiefDoctor = String.valueOf(doctor.getChiefDoctor());
-            patients = doctor.getPatients();
-            doctorAdvices = doctor.getDoctorAdvices();
 
             uri =  "http://localhost:9000/v1/doctor/" + doctor.getId();
         }
@@ -61,9 +60,8 @@ public class DoctorRepresentation {
         doctor.setEmail(email);
         doctor.setUsername(username);
         doctor.setPassword(password);
-        doctor.setChiefDoctor(ChiefDoctor.valueOf(chiefDoctor));
-        doctor.setPatients(patients);
-        doctor.setDoctorAdvices(doctorAdvices);
+        doctor.setRole(role);
+        doctor.setChiefDoctor(chiefDoctor);
 
         return doctor;
     }

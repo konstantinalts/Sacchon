@@ -1,13 +1,17 @@
 package gr.codehub.pfizer.team1.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import gr.codehub.pfizer.team1.enums.Medication;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Time;
 import java.util.Date;
 
-@Data
+@Getter
+@Setter
 @Entity
 public class DoctorAdvice {
 
@@ -19,9 +23,9 @@ public class DoctorAdvice {
     @Column(name = "date", nullable = false)
     private Date date;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "medication", nullable = true)
-    private Medication medication;
+//    @Enumerated(EnumType.STRING)
+//    @Column(name = "medication", nullable = true)
+//    private Medication medication;
 
     @Column(name = "dosage", nullable = true)
     private float dosage;
@@ -29,10 +33,13 @@ public class DoctorAdvice {
     @Column(name = "description", nullable = true)
     private String description;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Doctor doctor;
+    private Doctor doctorId;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Patient patient;
+    private Patient patientId;
+
 
 }

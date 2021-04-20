@@ -1,8 +1,10 @@
 package gr.codehub.pfizer.team1.resource;
+import gr.codehub.pfizer.team1.exception.AuthorizationException;
 import gr.codehub.pfizer.team1.jpautil.JpaUtil;
 import gr.codehub.pfizer.team1.model.Patient;
 import gr.codehub.pfizer.team1.repository.PatientRepository;
 import gr.codehub.pfizer.team1.representation.PatientRepresentation;
+import gr.codehub.pfizer.team1.security.Shield;
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
@@ -15,7 +17,23 @@ import java.util.List;
 public class PatientListResource extends ServerResource {
 
     @Get("json")
-    public List<PatientRepresentation> getPatient(){
+    public ApiResult<List<PatientRepresentation>> getPatient(){
+
+        String role = "";
+
+        try{
+            ResourceUtils.checkRole(this, Shield.ROLE_OWNER); role="owner";
+        }catch (AuthorizationException e){
+        }
+        try{
+            ResourceUtils.checkRole(this, Shield.ROLE_USER); role="user";
+        }catch (AuthorizationException e){
+        }
+
+        if (!role.equals("owner") && !role.equals("user"))
+            return new ApiResult<>(null,500,"Not Authorized");
+
+
         EntityManager em = JpaUtil.getEntityManager();
         PatientRepository patientRepository = new PatientRepository(em);
         List<Patient> patients = patientRepository.findAll();
@@ -25,7 +43,7 @@ public class PatientListResource extends ServerResource {
         for (Patient p : patients)
             patientRepresentationList.add(new PatientRepresentation(p));
 
-        return patientRepresentationList;
+        return new ApiResult<>(patientRepresentationList,200,"ok");
     }
 
     @Post("json")

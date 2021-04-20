@@ -35,6 +35,15 @@ public class PatientRepository extends Repository<Patient, Integer>{
                 .getSingleResult();
     }
 
+    public Patient getPatient(String username){
+        try{return entityManager.createQuery("select p from Patient p where p.username =:username",Patient.class)
+                .setParameter("username",username)
+                .getSingleResult();}
+        catch (Exception e){
+            return null;
+        }
+    }
+
     public Patient getByEmail(String email){
         return entityManager.createQuery("SELECT p FROM Patient p WHERE p.email = :email", Patient.class)
                 .setParameter("email",email)
@@ -47,10 +56,15 @@ public class PatientRepository extends Repository<Patient, Integer>{
                 .getResultList();
     }
 
-    public List<Patient> getPatientsWithoutDoc(){
-        return entityManager.createQuery("SELECT p FROM Patient p WHERE p.doctorId = : NULL", Patient.class)
-                .getResultList();
+//    public List<Patient> getPatientsWithoutDoc(){
+//        return entityManager.createQuery("SELECT p FROM Patient p WHERE p.doctorId = : NULL", Patient.class)
+//                .getResultList();
+//
+//    }
 
+    public List<Patient> findAll(){
+        return entityManager.createQuery("SELECT p FROM Patient p", Patient.class)
+                .getResultList();
     }
 
 

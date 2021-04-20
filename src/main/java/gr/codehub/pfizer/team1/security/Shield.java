@@ -7,6 +7,7 @@ import org.restlet.security.Verifier;
 
 public class Shield {
 
+
     public static final String ROLE_ADMIN = "admin";
     public static final String ROLE_OWNER = "owner";
     public static final String ROLE_USER = "user";
@@ -27,9 +28,10 @@ public class Shield {
 
         // - Verifier : checks authentication
         // - Enroler : to check authorization (roles)
-        Verifier verifier = new CustomVerifierForPatient();
+        Verifier verifier = new CustomVerifier();
         apiGuard.setVerifier(verifier);
 
         return apiGuard;
     }
+
 }

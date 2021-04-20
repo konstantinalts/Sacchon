@@ -1,5 +1,6 @@
 package gr.codehub.pfizer.team1.security;
 
+
 import org.restlet.Application;
 import org.restlet.Request;
 import org.restlet.Response;
@@ -67,5 +68,6 @@ public class CorsFilter {
         };
         return filter;
     }
+
 
 }

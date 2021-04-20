@@ -3,11 +3,15 @@ package gr.codehub.pfizer.team1.representation;
 import gr.codehub.pfizer.team1.model.MediDataRepo;
 import gr.codehub.pfizer.team1.model.Patient;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.sql.Time;
 import java.util.Date;
 
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 public class DataRepresentation {
 
@@ -16,7 +20,7 @@ public class DataRepresentation {
     private Time time;
     private int glucoseLevel;
     private float carbIntake;
-    private Patient patient;
+    private int patient;
 
     private String uri;
 
@@ -27,7 +31,7 @@ public class DataRepresentation {
             time = mediDataRepo.getTime();
             glucoseLevel = mediDataRepo.getGlucoseLevel();
             carbIntake = mediDataRepo.getCarbIntake();
-            patient = mediDataRepo.getPatient();
+            patient = mediDataRepo.getPatientId().getId();
 
             uri = "http://localhost:9000/v1/mediData/" + mediDataRepo.getId();
         }
@@ -40,7 +44,6 @@ public class DataRepresentation {
         mediDataRepo.setTime(time);
         mediDataRepo.setGlucoseLevel(glucoseLevel);
         mediDataRepo.setCarbIntake(carbIntake);
-        mediDataRepo.setPatient(patient);
 
         return mediDataRepo;
     }
