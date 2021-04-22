@@ -12,21 +12,23 @@ import javax.persistence.EntityManager;
 
 public class LoginDoctorResource extends ServerResource {
 
-    private String username;
-
     @Override
-    protected void doInit() {username = getAttribute(username);}
+    protected void doInit() {
+    }
 
     @Post("json")
     public ApiResult<LoginDoctorRepresentation> login(LoginDoctorRepresentation loginDoctorRepresentation) {
 
         EntityManager em = JpaUtil.getEntityManager();
         DoctorRepository doctorRepository = new DoctorRepository(em);
-        Doctor doctor = doctorRepository.getByUsername(username);
+        Doctor doctor = doctorRepository.getByUsername(loginDoctorRepresentation.getUsername());
 
         LoginDoctorRepresentation loginDoctorRepresentation1 = new LoginDoctorRepresentation(doctor);
         em.close();
-        return new ApiResult<>(loginDoctorRepresentation1, 200, "succesfully login");
-
+        if (doctor.getPassword().equals(loginDoctorRepresentation.getPassword()))
+            return new ApiResult<>(loginDoctorRepresentation1, 200, "succesfully login");
+        else {
+            return new ApiResult<>(loginDoctorRepresentation1, 500, "login unsuccesfully ");
+        }
     }
 }
