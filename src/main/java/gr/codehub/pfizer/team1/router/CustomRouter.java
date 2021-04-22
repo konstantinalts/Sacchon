@@ -20,7 +20,7 @@ public class CustomRouter {
         Router router = new Router();
 
         router.attach("/patient", PatientListResource.class);
-        router.attach("/patient{id}", PatientResource.class);
+        router.attach("/patient/{id}", PatientResource.class);
 
         router.attach("/doctor", DoctorListResource.class);
         router.attach("/doctor/{id}", DoctorResource.class);
@@ -40,6 +40,9 @@ public class CustomRouter {
 
         router.attach("/register/doctor", RegisterDoctorResource.class);
         router.attach("/register/user", RegisterPatientResource.class);
+
+        router.attach("/login/doctor", .class);
+        router.attach("/login/user", .class);
 
 //        router.attach("/patient", PatientListResource.class);
 //        router.attach("/patient{id}", PatientResource.class);
