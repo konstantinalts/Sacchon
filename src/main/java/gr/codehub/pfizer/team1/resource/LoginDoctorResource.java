@@ -6,27 +6,27 @@ import gr.codehub.pfizer.team1.repository.DoctorRepository;
 import gr.codehub.pfizer.team1.representation.DoctorRepresentation;
 import gr.codehub.pfizer.team1.representation.LoginDoctorRepresentation;
 import org.restlet.resource.Post;
+import org.restlet.resource.ServerResource;
 
 import javax.persistence.EntityManager;
 
-public class LoginDoctorResource {
+public class LoginDoctorResource extends ServerResource {
+
+    private String username;
+
+    @Override
+    protected void doInit() {username = getAttribute(username);}
 
     @Post("json")
     public ApiResult<LoginDoctorRepresentation> login(LoginDoctorRepresentation loginDoctorRepresentation) {
 
-        if (loginDoctorRepresentation == null)
-            return new ApiResult<>(null, 400, "No input data to create the customer");
-            return new ApiResult<>(null, 400, "No email added to create the costumer");
-        if (loginDoctorRepresentation.getUsername() == null)
-            return new ApiResult<>(null, 400, "No username added to create the costumer");
-        if (loginDoctorRepresentation.getPassword() == null)
-            return new ApiResult<>(null, 400, "No password added to create the costumer");
-
-        Doctor doctor = loginDoctorRepresentation.create();
         EntityManager em = JpaUtil.getEntityManager();
         DoctorRepository doctorRepository = new DoctorRepository(em);
-        doctorRepository.save(doctor);
-        return new ApiResult<>(new DoctorRepresentation(doctor), 200,
-                "The customer was succesfully created");
+        Doctor doctor = doctorRepository.getByUsername(username);
+
+        LoginDoctorRepresentation loginDoctorRepresentation1 = new LoginDoctorRepresentation(doctor);
+        em.close();
+        return new ApiResult<>(loginDoctorRepresentation1, 200, "succesfully login");
+
     }
 }

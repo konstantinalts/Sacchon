@@ -41,8 +41,8 @@ public class CustomRouter {
         router.attach("/register/doctor", RegisterDoctorResource.class);
         router.attach("/register/user", RegisterPatientResource.class);
 
-        router.attach("/login/doctor", .class);
-        router.attach("/login/user", .class);
+        router.attach("/login/doctor", LoginDoctorResource.class);
+        router.attach("/login/user", LoginPatientResource.class);
 
 //        router.attach("/patient", PatientListResource.class);
 //        router.attach("/patient{id}", PatientResource.class);

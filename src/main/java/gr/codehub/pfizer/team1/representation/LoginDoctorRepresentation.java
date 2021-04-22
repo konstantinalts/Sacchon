@@ -20,4 +20,11 @@ public class LoginDoctorRepresentation {
             password = doctor.getPassword();
         }
     }
+
+    public Doctor createLogin(){
+        Doctor doctor = new Doctor();
+        doctor.setUsername(username);
+        doctor.setPassword(password);
+        return doctor;
+    }
 }
