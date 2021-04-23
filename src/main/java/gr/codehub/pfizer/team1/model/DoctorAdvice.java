@@ -23,10 +23,6 @@ public class DoctorAdvice {
     @Column(name = "date", nullable = false)
     private Date date;
 
-//    @Enumerated(EnumType.STRING)
-//    @Column(name = "medication", nullable = true)
-//    private Medication medication;
-
     @Column(name = "dosage", nullable = true)
     private float dosage;
 

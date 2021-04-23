@@ -21,22 +21,6 @@ public class AdviceListResource extends ServerResource {
     @Get("json")
     public ApiResult<List<AdviceRepresentation>> getDoctorAdvice(){
 
-        String role = "";
-
-        try{
-            ResourceUtils.checkRole(this, Shield.ROLE_OWNER); role="owner";
-        }catch (AuthorizationException e){
-        }
-        try{
-            ResourceUtils.checkRole(this, Shield.ROLE_USER); role="user";
-        }catch (AuthorizationException e){
-        }
-
-        if (!role.equals("owner") && !role.equals("user"))
-            return new ApiResult<>(null,500,"Not Authorized");
-
-
-
         EntityManager em = JpaUtil.getEntityManager();
         AdviceRepository adviceRepository = new AdviceRepository(em);
 
